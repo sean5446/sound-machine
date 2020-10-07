@@ -1,0 +1,73 @@
+<html>
+<head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+
+  $(".start").click(function(){
+    //alert(this.id)
+    $.ajax({url: "/start", method: "POST", dataType: 'json', data: {"name" : this.id},
+      beforeSend: function(xhr){ if (xhr.overrideMimeType) xhr.overrideMimeType("application/json"); },
+      success: function(result){ setResponse(result, 0); },
+      error:   function(result){ setResponse(result, 1); }
+    });
+  });
+
+  $("#stop").click(function(){
+    $.ajax({url: "/stop", method: "POST", dataType: 'json',
+      beforeSend: function(xhr){ if (xhr.overrideMimeType) xhr.overrideMimeType("application/json"); },
+      success: function(result){ setResponse(result, 0); },
+      error:   function(result){ setResponse(result, 1); }
+    });
+  });
+
+  function setResponse(result, err) {
+    $('#response').html(`${result.res}` + ' ')
+  }
+});
+</script>
+<style>
+body {
+    background-color: black;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 90px;
+    text-align: center;
+    color: white;
+}
+#mainbox {
+    width: 690px;
+    height: 460px;
+    /* border: 1px solid red; */
+    margin-left: 5px;
+}
+#rain {
+    color: purple;
+}
+#thunder {
+    color: yellow;
+}
+#waves {
+    color: cyan;
+}
+#noise {
+    color: hotpink;
+}
+#stop {
+    color: red;
+}
+</style>
+</head>
+<body>
+    <div id="mainbox">
+        <div class="start" id="rain">rain 🌧️</div><br />
+        <div class="start" id="thunder">thunder 🌩️</div><br />
+        <div class="start" id="waves">waves 🌊</div><br />
+        <div class="start" id="noise">noise 🔊</div><br />
+        <div id="stop">stop 🛑</div><br />
+        <div id="response"></div>
+    </div>
+</body>
+</html>
