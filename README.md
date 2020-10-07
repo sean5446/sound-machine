@@ -3,4 +3,4 @@ made for raspi- plays sounds like rain, ocean, white noise
 
 run with `nohup sudo python3 server.py &`
 
-![smartphone control](https://i.imgur.com/Xnp3lnz.png =400x)
+![smartphone control](https://i.imgur.com/Xnp3lnz.png) { width=30% }
